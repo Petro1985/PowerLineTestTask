@@ -75,7 +75,7 @@ public class FreightCarLogicTest
             Weight = ValidMaxWeight,
         };
 
-        var distance = car.DistanceForFullTank();
+        var distance = car.DistanceCanDriveWithFullTank();
         var expectedDistance = (ValidFuelTankVolume / ValidAverageFuelConsumptionFor100Km * 100) * (1 - (car.Weight / 200) * 0.04); 
         
         Assert.Equal(expectedDistance, distance);

@@ -4,6 +4,7 @@ namespace PowerLineTestTask;
 
 public class FreightCar : CarBase
 {
+    private const double ReducingDistancePer200Kg = 0.04;
     private readonly int _maxWeight;
     private int _currentWeight;
     protected override double Efficiency => (1 - (_currentWeight / 200) * ReducingDistancePer200Kg); 
@@ -16,10 +17,6 @@ public class FreightCar : CarBase
         _maxWeight = maxWeight;
     }
 
-    /// <summary>
-    /// coefficient that reduce distance vehicle can drive per 200 kg of weights
-    /// </summary>
-    private const double ReducingDistancePer200Kg = 0.04;
     public override CarType Type => CarType.FreightCar;
     public int Weight
     {
@@ -27,7 +24,8 @@ public class FreightCar : CarBase
         set
         {
             if (value > _maxWeight)
-                throw new ArgumentOutOfRangeException($"Max weight is {_maxWeight}kg. You tried to load {value}kg");
+                throw new ArgumentOutOfRangeException($"Max weight for this car is {_maxWeight}kg. You tried to load {value}kg");
+            
             _currentWeight = value;
         }
     }

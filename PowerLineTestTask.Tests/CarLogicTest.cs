@@ -75,7 +75,7 @@ public class CarLogicTest
             PassengersCount = ValidMaxPassengersCount,
         };
 
-        var distance = car.DistanceForFullTank();
+        var distance = car.DistanceCanDriveWithFullTank();
         var expectedDistance = (ValidFuelTankVolume / ValidAverageFuelConsumptionFor100Km * 100) * (1 - car.PassengersCount * 0.06); 
         
         Assert.Equal(expectedDistance, distance);

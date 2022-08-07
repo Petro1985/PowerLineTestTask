@@ -4,14 +4,14 @@ namespace PowerLineTestTask;
 
 public abstract class CarBase
 {
-    private double _fuelTankVolume;
-    public abstract CarType Type { get; }
+    private readonly double _fuelTankVolume;
     
+    public abstract CarType Type { get; }
     public double AverageFuelConsumptionFor100Km { get; }
     public double CurrentFuelLevel { get; set; }
     public double SpeedKmPerHour { get;  } 
     
-    protected virtual double Efficiency => 1;
+    protected virtual double Efficiency => 1d;
 
     protected CarBase(double fuelTankVolume, double averageFuelConsumptionFor100Km, double speed)
     {
@@ -23,10 +23,11 @@ public abstract class CarBase
         _fuelTankVolume = fuelTankVolume;
         SpeedKmPerHour = speed;
     }
-    
-    protected double DistanceCanDriveWithoutEncumbrance(double fuelLevel)
+
+    private double DistanceCanDriveWithoutEncumbrance(double fuelLevel)
         => fuelLevel / AverageFuelConsumptionFor100Km * 100;
-    public double DistanceForFullTank()
+    
+    public double DistanceCanDriveWithFullTank()
         => DistanceCanDriveWithoutEncumbrance(_fuelTankVolume) * Efficiency;
     public double DistanceCanDrive()
         => Efficiency * DistanceCanDriveWithoutEncumbrance(CurrentFuelLevel);

@@ -36,7 +36,7 @@ public class SportCarLogic
             CurrentFuelLevel = currentFuelLevel,
         };
 
-        var distance = car.DistanceForFullTank();
+        var distance = car.DistanceCanDriveWithFullTank();
         var expectedDistance = (ValidFuelTankVolume / ValidAverageFuelConsumptionFor100Km * 100); 
         
         Assert.Equal(expectedDistance, distance);
